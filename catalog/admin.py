@@ -12,8 +12,10 @@ class BookInstanceInline(admin.TabularInline):
 # the same thing as (admin.site.register() syntax.)
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'display_genre')
+    list_display = ('title', 'author', 'display_genre', 'word')
+    list_filter = ['word'] 
     inlines = [BookInstanceInline]
+    
 
 class BookInline(admin.TabularInline):
     model = Book 
@@ -42,7 +44,7 @@ class BookInstanceAdmin(admin.ModelAdmin):
         (None, {
             "fields": (
                 'book',
-                'imprint',
+                'imprint', 
                 'id',
             ),
         }),
