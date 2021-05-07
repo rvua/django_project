@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from catalog.models import Book, Author, BookInstance, Genre
-from django.views import generic
+
 
 # Create your views here.
 def index(request): 
@@ -16,7 +16,7 @@ def index(request):
     num_genres = Genre.objects.count() 
     # Books that begin with "T"
     num_words = Book.objects.filter(word__exact='t').count()
-
+ 
     context = {
         'num_books': num_books,
         'num_instances': num_instances,
@@ -28,9 +28,3 @@ def index(request):
 
     # Render the HTML Template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
-
-
-class BookListView(generic.ListView):
-    model = Book
-
-    
